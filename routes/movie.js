@@ -13,6 +13,16 @@ router.get('/', (req, res) => {
   });
 });
 
+// Top 10 list
+router.get('/top10', (req, res) => {
+  const promise = Movie.find({ }).limit(10).sort({ imdb_score: -1 });
+  promise.then((data) => {
+    res.json(data);
+  }).catch((err) => {
+    res.json(err);
+  });
+});
+
 router.get('/:movie_id', (req, res, next) => {
   const promise = Movie.findById(req.params.movie_id);
   promise.then((movie) => {
