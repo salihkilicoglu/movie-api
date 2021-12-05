@@ -19,15 +19,15 @@ router.get('/', (req, res) => {
     const promise = Director.aggregate([
         {
             $lookup: {
-                from: 'movies',
+                from: 'directors',
                 localField: '_id',
                 foreignField: 'director_id',
-                as: 'movies'
+                as: 'directors'
             }
         },
         {
             $unwind: {
-                path: '$movies',
+                path: '$directors',
                 preserveNullAndEmptyArrays: true
             }
         },
@@ -39,8 +39,8 @@ router.get('/', (req, res) => {
                     surname: '$surname',
                     bio: '$bio'
                 },
-                movies: {
-                    $push: '$movies'
+                directors: {
+                    $push: '$directors'
                 }
             }
         },
@@ -49,7 +49,7 @@ router.get('/', (req, res) => {
                 _id: '$_id._id',
                 name: '$_id.name',
                 surname: '$_id.surname',
-                movies: '$movies'
+                directors: '$directors'
             }
         }
     ]);
@@ -69,15 +69,15 @@ router.get('/:director_id', (req, res) => {
         },
         {
             $lookup: {
-                from: 'movies',
+                from: 'directors',
                 localField: '_id',
                 foreignField: 'director_id',
-                as: 'movies'
+                as: 'directors'
             }
         },
         {
             $unwind: {
-                path: '$movies',
+                path: '$directors',
                 preserveNullAndEmptyArrays: true
             }
         },
@@ -89,8 +89,8 @@ router.get('/:director_id', (req, res) => {
                     surname: '$surname',
                     bio: '$bio'
                 },
-                movies: {
-                    $push: '$movies'
+                directors: {
+                    $push: '$directors'
                 }
             }
         },
@@ -99,7 +99,7 @@ router.get('/:director_id', (req, res) => {
                 _id: '$_id._id',
                 name: '$_id.name',
                 surname: '$_id.surname',
-                movies: '$movies'
+                directors: '$directors'
             }
         }
     ]);
@@ -123,6 +123,18 @@ router.put('/:director_id', (req, res, next) => {
         next({ message: 'The director was not found.', code: 99 });
       
       res.json(director);
+    }).catch((err) => {
+      res.json(err);
+    });
+  });
+
+  router.delete('/:director_id', (req, res, next) => {
+    const promise = Director.findByIdAndRemove(req.params.director_id);
+    promise.then((director) => {
+      if (!director)
+        next({ message: 'The director was not found.', code: 99 });
+      
+      res.json({ status:1 });
     }).catch((err) => {
       res.json(err);
     });
