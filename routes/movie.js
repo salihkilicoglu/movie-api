@@ -9,12 +9,20 @@ router.post('/', (req, res, next) => {
 
   const movie = new Movie(req.body);
 
-  movie.save((err, data) => {
+  /*movie.save((err, data) => {
     if (err)
       res.json(err);
     
     res.json({ status: 1 });
-  });
+  });*/
+
+  const promise = movie.save();
+  
+  promise.then((data) => {
+    res.json({ status: 1 });
+  }).catch((err) => {
+    res.json(err);
+  })
 
 });
 
