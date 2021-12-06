@@ -19,15 +19,15 @@ router.get('/', (req, res) => {
     const promise = Director.aggregate([
         {
             $lookup: {
-                from: 'directors',
+                from: 'movies',
                 localField: '_id',
                 foreignField: 'director_id',
-                as: 'directors'
+                as: 'movies'
             }
         },
         {
             $unwind: {
-                path: '$directors',
+                path: '$movies',
                 preserveNullAndEmptyArrays: true
             }
         },
@@ -39,8 +39,8 @@ router.get('/', (req, res) => {
                     surname: '$surname',
                     bio: '$bio'
                 },
-                directors: {
-                    $push: '$directors'
+                movies: {
+                    $push: '$movies'
                 }
             }
         },
@@ -49,7 +49,7 @@ router.get('/', (req, res) => {
                 _id: '$_id._id',
                 name: '$_id.name',
                 surname: '$_id.surname',
-                directors: '$directors'
+                movies: '$movies'
             }
         }
     ]);
@@ -69,15 +69,15 @@ router.get('/:director_id', (req, res) => {
         },
         {
             $lookup: {
-                from: 'directors',
+                from: 'movies',
                 localField: '_id',
                 foreignField: 'director_id',
-                as: 'directors'
+                as: 'movies'
             }
         },
         {
             $unwind: {
-                path: '$directors',
+                path: '$movies',
                 preserveNullAndEmptyArrays: true
             }
         },
@@ -89,8 +89,8 @@ router.get('/:director_id', (req, res) => {
                     surname: '$surname',
                     bio: '$bio'
                 },
-                directors: {
-                    $push: '$directors'
+                movies: {
+                    $push: '$movies'
                 }
             }
         },
@@ -99,7 +99,7 @@ router.get('/:director_id', (req, res) => {
                 _id: '$_id._id',
                 name: '$_id.name',
                 surname: '$_id.surname',
-                directors: '$directors'
+                movies: '$movies'
             }
         }
     ]);
