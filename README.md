@@ -1,5 +1,5 @@
-# movie-api
-Nodejs rest api for movies
+# Movie-Api
+Nodejs rest api for movies with mongodb.
 
 # Movies
 
