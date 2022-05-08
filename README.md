@@ -35,7 +35,7 @@ Nodejs rest api for movies
 # Demo
 First You need to go to /register and sing-up. Then you need to sign in at /authenticate.
 After you get your token you need to send your token as "token" key via request body or request query or
-'x-access-token' for request headers. You need to send you token for every request.
+'x-access-token' for request headers. You need to send your token for every request.
 
 [Live demo on Heroku](https://salihkilicoglu-movie-api.herokuapp.com/)
 
