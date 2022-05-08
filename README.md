@@ -33,6 +33,6 @@ Nodejs rest api for movies
 
 
 # Demo
-[Live demo on Heroku](https://node-egitimi-movie-api.herokuapp.com/)
+[Live demo on Heroku](https://salihkilicoglu-movie-api.herokuapp.com/)
 
 enjoy!
