@@ -1,5 +1,5 @@
 # Movie-Api
-Nodejs rest api for movies with mongodb.
+Express website using NodeJS. With this app you can have movies connected to directors with authentication and some filtering.
 
 # Movies
 
