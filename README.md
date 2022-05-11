@@ -1,4 +1,4 @@
-# Movie-Api
+# Movie Api
 Express website using NodeJS. With this app you can have movies connected to directors with authentication and some filtering.
 
 # Movies
